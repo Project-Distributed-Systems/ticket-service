@@ -54,6 +54,10 @@ public class Ticket {
         ticket_situation = TicketState.CANCELADO;
         break;
 
+      case PENGING:
+        ticket_situation = TicketState.CANCELADO;
+        break;
+
       case CANCELADO:
         // Probally the cancelation policy was activate by a dropout event (Need a log
         // WARNING)
@@ -63,6 +67,28 @@ public class Ticket {
         // Insert a warning in this field (A event cannot be canceled after happened,
         // therefore they ticket)
         throw new DomainException.TicketAlreadyUsedException(id);
+
+    }
+  }
+
+  public void pay() {
+    switch (ticket_situation) {
+      case ATIVO:
+        // Probaly a duplicated message (just log it)
+        break;
+
+      case PENGING:
+        ticket_situation = TicketState.ATIVO;
+        break;
+
+      case CANCELADO:
+        // Probally the client tried to pay a ticket while a event is canceled (Need a
+        // log
+        // WARNING)
+        break;
+
+      case USADO:
+        throw new DomainException("Cannot pay something its alreddy used");
 
     }
   }

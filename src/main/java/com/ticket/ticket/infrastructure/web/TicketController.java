@@ -19,6 +19,7 @@ import com.ticket.ticket.application.event.ViewActiveTicketUseCase;
 import com.ticket.ticket.application.event.dto.CreateTicketCommand;
 import com.ticket.ticket.application.event.dto.TicketResponse;
 import com.ticket.ticket.domain.event.ID;
+import com.ticket.ticket.infrastructure.persistense.TicketEntity;
 
 @RestController
 @RequestMapping("/tickets")
@@ -48,7 +49,7 @@ public class TicketController {
     return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
   }
 
-  @GetMapping("/view/event/{eventId}/active")
+  @GetMapping("/view/event/{eventId}/reserved")
   public ResponseEntity<List<TicketResponse>> activeTickets(@PathVariable UUID eventId) {
     List<TicketResponse> tickets = viewActiveTicketUseCase.execute(eventId);
 

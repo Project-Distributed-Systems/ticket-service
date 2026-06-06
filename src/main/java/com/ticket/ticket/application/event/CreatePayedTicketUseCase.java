@@ -23,7 +23,7 @@ public class CreatePayedTicketUseCase {
   public TicketResponse execute(CreateTicketCommand command) {
     // chama o domínio
     Ticket ticket = new Ticket(
-        TicketState.ATIVO,
+        TicketState.PENGING,
         new TicketId(UUID.randomUUID()),
         command.eventId(),
         command.clientId());
