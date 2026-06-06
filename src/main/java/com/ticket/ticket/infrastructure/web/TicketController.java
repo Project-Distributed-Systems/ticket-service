@@ -19,6 +19,7 @@ import com.ticket.ticket.application.event.ViewActiveTicketUseCase;
 import com.ticket.ticket.application.event.dto.CreateTicketCommand;
 import com.ticket.ticket.application.event.dto.TicketResponse;
 import com.ticket.ticket.domain.event.ID;
+import com.ticket.ticket.infrastructure.persistense.TicketEntity;
 
 @RestController
 @RequestMapping("/tickets")

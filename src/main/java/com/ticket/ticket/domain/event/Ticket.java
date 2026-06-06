@@ -70,4 +70,26 @@ public class Ticket {
 
     }
   }
+
+  public void pay() {
+    switch (ticket_situation) {
+      case ATIVO:
+        // Probaly a duplicated message (just log it)
+        break;
+
+      case PENGING:
+        ticket_situation = TicketState.ATIVO;
+        break;
+
+      case CANCELADO:
+        // Probally the client tried to pay a ticket while a event is canceled (Need a
+        // log
+        // WARNING)
+        break;
+
+      case USADO:
+        throw new DomainException("Cannot pay something its alreddy used");
+
+    }
+  }
 }
