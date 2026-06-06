@@ -1,0 +1,26 @@
+services:
+
+  postgres:
+    image: postgres:16
+    container_name: ticket-db
+    environment:
+      POSTGRES_DB: ticketdb
+      POSTGRES_USER: spring_app
+      POSTGRES_PASSWORD: spting_password
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U spring_app -d ticketdb"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  ticket-service:
+    build:
+      context: .        # Dockerfile está na mesma pasta
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"     # Acesse em localhost:8080
+    depends_on:
+      postgres:
+        condition: service_healthy
