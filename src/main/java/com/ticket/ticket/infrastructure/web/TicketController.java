@@ -48,7 +48,7 @@ public class TicketController {
     return ResponseEntity.status(HttpStatus.ACCEPTED).body(response);
   }
 
-  @GetMapping("/view/event/{eventId}/active")
+  @GetMapping("/view/event/{eventId}/reserved")
   public ResponseEntity<List<TicketResponse>> activeTickets(@PathVariable UUID eventId) {
     List<TicketResponse> tickets = viewActiveTicketUseCase.execute(eventId);
 

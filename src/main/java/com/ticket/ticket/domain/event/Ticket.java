@@ -54,6 +54,10 @@ public class Ticket {
         ticket_situation = TicketState.CANCELADO;
         break;
 
+      case PENGING:
+        ticket_situation = TicketState.CANCELADO;
+        break;
+
       case CANCELADO:
         // Probally the cancelation policy was activate by a dropout event (Need a log
         // WARNING)
